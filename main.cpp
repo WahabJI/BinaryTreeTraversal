@@ -10,8 +10,21 @@ int search(vector<int> inorder, int root){
         }
     }
 }
-vector<int> postorder(int length, vector<int> preorder, vector<int> inorder){
+void postorder(int length, vector<int> preorder, vector<int> inorder){
+    int root = search(inorder, preorder[0]);
 
+    if(root != 0){
+        vector<int> temp(preorder.begin()+1,preorder.end());
+        postorder(root, temp, inorder);
+    }
+
+    if(root != length - 1){
+        vector<int> newPreorder(preorder.begin()+root+1,preorder.end());
+        vector<int> newInorder(inorder.begin()+root+1, inorder.end());
+        postorder(length-root-1, newPreorder, newInorder);
+    }
+
+    cout << preorder[0] << " ";
 }
 
 int main(){
@@ -33,5 +46,6 @@ int main(){
         cin >> inorder[x];
     }
 
+    postorder(length, preorder, inorder);
     return 0;
 }
