@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-//function to find location of root in inorder
+//function to find location of root in inorder 
 int search(vector<int> inorder, int root){
     for(int x = 0; x < inorder.size(); x++){
         if(inorder[x] == root){
